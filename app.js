@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 // mongoose
 mongoose
@@ -13,6 +14,7 @@ mongoose
 
 // app
 const app = express();
+app.use(session({ secret: '343ji43j4n3jn4jk3n' }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
