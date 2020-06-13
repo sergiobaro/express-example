@@ -16,10 +16,9 @@ brew install node
 npm install
 ```
 
-
 ## Run in development
 
-This will start the server with `nodemon` (listening for file changes):
+This will start the server with [nodemon](https://nodemon.io/) (listening for file changes):
 ```
 npm run dev
 ```
