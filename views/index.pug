@@ -1,6 +1,11 @@
-extends layout
+extends templates/layout
+
+include templates/nav
 
 block content
+
+  +nav(nav_options)
+
   span.badge.badge-primary Bootstrap
   h1= title
   p Welcome to #{title}

@@ -1,0 +1,8 @@
+mixin nav(nav_options)
+    unless (nav_options === undefined || nav_options.length == 0)
+        nav
+            ol.breadcrumb.justify-content-end
+                each option in nav_options
+                    - const btnStyle = option.btnStyle || 'primary'
+                    li.breadcrum-item.mr-2
+                        a.btn(class='btn-'+btnStyle, href=option.href)= option.text
