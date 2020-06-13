@@ -25,7 +25,9 @@ app.use(cookieParser());
 
 // static content
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
+app.use('/js/bootstrap/', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
+app.use('/css/bootstrap/', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
+app.use('/js/jquery/', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
 // routes
 const indexRouter = require('./routes/index');
