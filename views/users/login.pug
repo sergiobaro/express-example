@@ -1,16 +1,20 @@
 extends ../templates/layout
 
 include ../templates/nav
+include ../templates/alert
 
 block content
 
+  - const nav_options = [{ text: 'Back', href: '/', btnStyle: 'link' }]
   +nav(nav_options)
+
+  +alert(alert)
 
   div.d-flex.justify-content-center
     form.mt-3.text-center(style="width: 350px", action='/users/login', method='POST')
       h3.mb-5.text-center= title
       .form-group
-        input.form-control(type=email, name=email, placeholder='Email')
+        input.form-control(type='text', name='email', placeholder='Email')
       .form-group
-        input.form-control(type=password, name=password, placeholder='Password')
+        input.form-control(type='password', name='password', placeholder='Password')
       button.btn.btn-primary.w-50.mt-4(type=submit) Login
