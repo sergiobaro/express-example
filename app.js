@@ -1,10 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 
-var app = express();
+// mongoose
+mongoose
+  .connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.log(err));
+
+// app
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,9 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 
 // routes
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
-var usersRouter = require('./routes/users');
+const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
