@@ -14,7 +14,14 @@ mongoose
 
 // app
 const app = express();
-app.use(session({ secret: '343ji43j4n3jn4jk3n' }))
+
+// session
+const sessionConfig = { secret: '343ji43j4n3jn4jk3n' }
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1)
+  sessionConfig.cookie.secure = true
+}
+app.use(session(sessionConfig))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

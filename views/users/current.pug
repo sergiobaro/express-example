@@ -1,0 +1,13 @@
+extends ../templates/layout
+
+include ../templates/nav
+include ../templates/alert
+
+block content
+
+  - const nav_options = [{ text: 'Back', href: '/', btnStyle: 'link' }]
+  +nav(nav_options)
+
+  +alert(alert)
+
+  h1= user.email
