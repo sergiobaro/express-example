@@ -1,13 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require('../models/user.model');
 
 // GET Home
 router.get('/', async (req, res) => {
-  var nav_options = [{ text: 'Login', href: '/login' }]
-  if (req.session.userId !== undefined) {
+  let nav_options = [{ text: 'Login', href: '/login' }]
+
+  if (req.session.userId) {
     const user = await User.findById(req.session.userId).select('-password');
-    if (user !== undefined) {
+    if (user) {
       nav_options = [
         { text: user.email, href: '/users/current', style: 'link' },
         { text: 'Logout', href: '/logout' }
