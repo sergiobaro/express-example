@@ -3,6 +3,6 @@ mixin nav(nav_options)
     nav
       ol.breadcrumb.justify-content-end
         each option in nav_options
-          - const btnStyle = option.btnStyle || 'primary'
+          - const style = option.style || 'primary'
           li.breadcrum-item.mr-2
-            a.btn(class='btn-'+btnStyle, href=option.href)= option.text
+            a.btn(class='btn-'+style, href=option.href)= option.text

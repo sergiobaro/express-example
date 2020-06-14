@@ -52,6 +52,8 @@ app.use('/js/jquery/', express.static(path.join(__dirname, '/node_modules/jquery
 // routes
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
+const loginRouter = require('./routes/login');
+app.use('/', loginRouter);
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
