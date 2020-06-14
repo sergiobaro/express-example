@@ -3,7 +3,6 @@ var router = express.Router();
 
 // GET Home
 router.get('/', function(req, res) {
-  console.log(req.session);
   var nav_options = []
   if (req.session.userId === undefined) {
     nav_options.push({ text: 'Login', href: 'users/login' })

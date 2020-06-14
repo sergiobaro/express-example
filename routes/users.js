@@ -10,11 +10,9 @@ router.get('/login', async (req, res) => {
   });
 });
 
-
 // POST Login
 router.post('/login', async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-
   // Wrong email
   if (!user) {
     return res.render('users/login', {

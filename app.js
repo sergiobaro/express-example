@@ -5,10 +5,14 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // mongoose
 mongoose
-  .connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true})
+  .connect('mongodb://localhost:27017', { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+  })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log(err));
 
@@ -16,14 +20,21 @@ mongoose
 const app = express();
 
 // session
-const sessionConfig = { secret: '343ji43j4n3jn4jk3n' }
+const sessionConfig = { 
+  secret: '343ji43j4n3jn4jk3n',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ 
+    mongooseConnection: mongoose.connection
+  })
+}
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1)
   sessionConfig.cookie.secure = true
 }
 app.use(session(sessionConfig))
 
-// view engine setup
+// view engine setup (pug)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
