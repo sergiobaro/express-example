@@ -1,0 +1,28 @@
+extends ../templates/layout
+
+include ../templates/nav
+include ../templates/alert
+
+block content
+
+  - const nav_options = [{ text: 'Home', href: '/', btnStyle: 'link' }]
+  +nav(nav_options)
+
+  +alert(alert)
+
+  div.d-flex.justify-content-center
+    form.mt-3.text-center(style="width: 350px", id='signup' action='', method='POST')
+      h3.mb-5.text-center= title
+      .form-group
+        input.form-control(type='text', name='email', placeholder='Email')
+      .form-group
+        input.form-control(type='password', name='password', placeholder='Password')
+      .form-group
+        input.form-control(type='password', name='password-confirm', placeholder='Confirm password')
+      button.btn.btn-primary.w-50.mt-4(type=submit) Sign Up
+
+  //- focus on first input
+  script.
+    $(document).ready(function() {
+      $('form#signup :input:visible:enabled:first')[0].focus();
+    });

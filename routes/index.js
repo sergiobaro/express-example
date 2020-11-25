@@ -4,7 +4,10 @@ const User = require('../models/user.model');
 
 // GET Home
 router.get('/', async (req, res) => {
-  let nav_options = [{ text: 'Login', href: '/login' }]
+  let nav_options = [
+    { text: 'Login', href: '/login' },
+    { text: 'Sign Up', href: '/signup' }
+  ]
 
   if (req.session.userId) {
     const user = await User.findById(req.session.userId).select('-password');

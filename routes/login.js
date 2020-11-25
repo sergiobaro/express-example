@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 // GET Login
 router.get('/login', async (req, res) => {
-  res.render('login/login', { 
+  res.render('users/login', { 
     title: 'Login'
   });
 });
@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   // Wrong email
   if (!user) {
-    return res.render('login/login', {
+    return res.render('users/login', {
       title: 'Login',
       alert: `User '${req.body.email}' not found`
     });
@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
   const arePasswordEqual = await bcrypt.compare(req.body.password, user.password);
   // Wrong password
   if (!arePasswordEqual) {
-    return res.render('login/login', {
+    return res.render('users/login', {
       title: 'Login',
       alert: 'Wrong password'
     });
